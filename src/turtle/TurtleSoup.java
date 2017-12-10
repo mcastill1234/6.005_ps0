@@ -109,7 +109,13 @@ public class TurtleSoup {
      *         otherwise of size (# of points) - 1
      */
     public static List<Double> calculateHeadings(List<Integer> xCoords, List<Integer> yCoords) {
-        throw new RuntimeException("implement me!");
+        List<Double> headings = new ArrayList<Double>();
+        double temp = 0.0;
+        for (int i = 0; i < xCoords.size()-1; i++) {
+            temp = calculateHeadingToPoint(temp, xCoords.get(i), yCoords.get(i), xCoords.get(i+1), yCoords.get(i+1));
+            headings.add(temp);
+        }
+        return headings;
     }
 
     /**
@@ -121,7 +127,16 @@ public class TurtleSoup {
      * @param turtle the turtle context
      */
     public static void drawPersonalArt(Turtle turtle) {
-        throw new RuntimeException("implement me!");
+        int sides = 6;
+        int sideLength = 100;
+        for (int teta = 0; teta <+ 360; teta += 5) {
+            turtle.turn(teta);
+            for (int i = sides; i>0; i--) {
+                turtle.forward(sideLength);
+                turtle.turn(180 - calculateRegularPolygonAngle(sides));
+            }
+        }
+
     }
 
     /**
@@ -134,9 +149,10 @@ public class TurtleSoup {
     public static void main(String args[]) {
         DrawableTurtle turtle = new DrawableTurtle();
 
+        drawPersonalArt(turtle);
         // drawSquare(turtle, 40);
 
-        drawRegularPolygon(turtle, 9, 60);
+        //drawRegularPolygon(turtle, 9, 60);
 
         // draw the window
         turtle.draw();
