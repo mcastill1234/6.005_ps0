@@ -15,10 +15,10 @@ public class TurtleSoup {
      * @param sideLength length of each side
      */
     public static void drawSquare(Turtle turtle, int sideLength) {
-
+        double rightAngleTurn = 90.0;
         for (int i = 0; i < 4; i++) {
             turtle.forward(sideLength);
-            turtle.turn(90.0);
+            turtle.turn(rightAngleTurn);
         }
     }
 
@@ -110,10 +110,10 @@ public class TurtleSoup {
      */
     public static List<Double> calculateHeadings(List<Integer> xCoords, List<Integer> yCoords) {
         List<Double> headings = new ArrayList<Double>();
-        double temp = 0.0;
+        double tempHeading = 0.0;
         for (int i = 0; i < xCoords.size()-1; i++) {
-            temp = calculateHeadingToPoint(temp, xCoords.get(i), yCoords.get(i), xCoords.get(i+1), yCoords.get(i+1));
-            headings.add(temp);
+            tempHeading = calculateHeadingToPoint(tempHeading, xCoords.get(i), yCoords.get(i), xCoords.get(i+1), yCoords.get(i+1));
+            headings.add(tempHeading);
         }
         return headings;
     }
