@@ -143,6 +143,11 @@ public class TurtleSoup {
         }
     }
 
+    /**
+      * Calls kochDrawing 3 times turning turtle to draw a complete Koch snowflake.
+      * @param turtle
+      */
+
     public static void drawPersonalArt(Turtle turtle) {
         for (int i = 0; i<3; i++) {
             kochDrawing(turtle, 243, 5);
