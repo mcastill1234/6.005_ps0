@@ -130,15 +130,23 @@ public class TurtleSoup {
      * @param sideLength should be divisible by 3 to keep int format for turtle.
      * @param order the order of the Koch snowflake
      */
-    public static void drawPersonalArt(Turtle turtle, int sideLength, int order) {
+    public static void kochDrawing(Turtle turtle, int sideLength, int order) {
+        turtle.color(PenColor.BLUE);
         int[] arrayTurns = {60, -120, 60, 0};
         if (order > 0) {
             for (int turn : arrayTurns) {
-                drawPersonalArt(turtle, sideLength/3, order-1);
+                kochDrawing(turtle, sideLength/3, order-1);
                 turtle.turn(turn);
             }
         } else {
             turtle.forward(sideLength);
+        }
+    }
+
+    public static void drawPersonalArt(Turtle turtle) {
+        for (int i = 0; i<3; i++) {
+            kochDrawing(turtle, 243, 5);
+            turtle.turn(-120);
         }
     }
 
@@ -152,7 +160,7 @@ public class TurtleSoup {
     public static void main(String args[]) {
         DrawableTurtle turtle = new DrawableTurtle();
 
-        drawPersonalArt(turtle, 81, 3);
+        drawPersonalArt(turtle);
         // drawSquare(turtle, 40);
 
         //drawRegularPolygon(turtle, 9, 60);
