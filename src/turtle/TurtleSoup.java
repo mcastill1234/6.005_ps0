@@ -123,20 +123,23 @@ public class TurtleSoup {
      * 
      * Many interesting images can be drawn using the simple implementation of a turtle.  For this
      * function, draw something interesting; the complexity can be as little or as much as you want.
-     * 
-     * @param turtle the turtle context
+     *
+     * Koch snowflake using recursion.
+     *
+     * @param turtle the turtle context.
+     * @param sideLength should be divisible by 3 to keep int format for turtle.
+     * @param order the order of the Koch snowflake
      */
-    public static void drawPersonalArt(Turtle turtle) {
-        int sides = 6;
-        int sideLength = 100;
-        for (int teta = 0; teta <+ 360; teta += 5) {
-            turtle.turn(teta);
-            for (int i = sides; i>0; i--) {
-                turtle.forward(sideLength);
-                turtle.turn(180 - calculateRegularPolygonAngle(sides));
+    public static void drawPersonalArt(Turtle turtle, int sideLength, int order) {
+        int[] arrayTurns = {60, -120, 60, 0};
+        if (order > 0) {
+            for (int turn : arrayTurns) {
+                drawPersonalArt(turtle, sideLength/3, order-1);
+                turtle.turn(turn);
             }
+        } else {
+            turtle.forward(sideLength);
         }
-
     }
 
     /**
@@ -149,7 +152,7 @@ public class TurtleSoup {
     public static void main(String args[]) {
         DrawableTurtle turtle = new DrawableTurtle();
 
-        drawPersonalArt(turtle);
+        drawPersonalArt(turtle, 81, 3);
         // drawSquare(turtle, 40);
 
         //drawRegularPolygon(turtle, 9, 60);
